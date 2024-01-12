@@ -53,5 +53,35 @@ namespace DynamicProgramming.Tests
             Assert.Equal(expected, result);
         }
 
+        [Fact]
+        public void TestSum()
+        {
+            // arrange
+            // act
+            int result = MathFunctionsRecursive.Sum(1, 3);
+            // assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void TestSumWithStartBiggerThanEnd()
+        {
+            // arrange
+            // act
+            int result = MathFunctionsRecursive.Sum(3, 1);
+            // assert
+            // the documented user requirement is that invalid sums result in 0
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void TestSumWithReallyBigInt()
+        {
+            // arrange
+            // act
+            int result = MathFunctionsRecursive.Sum(int.MaxValue-2, int.MaxValue-1);
+            // assert
+            Assert.Equal(0, result);
+        }
     }
 }
