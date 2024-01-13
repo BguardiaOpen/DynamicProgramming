@@ -60,7 +60,7 @@ namespace DynamicProgramming.Tests
             // act
             int result = MathFunctionsRecursive.Sum(1, 3);
             // assert
-            Assert.Equal(0, result);
+            Assert.Equal(6, result);
         }
 
         [Fact]
@@ -78,10 +78,14 @@ namespace DynamicProgramming.Tests
         public void TestSumWithReallyBigInt()
         {
             // arrange
+            Action testCode = () =>
+            {
+                int result = MathFunctionsRecursive.Sum(int.MaxValue - 2, int.MaxValue - 1);
+            };
             // act
-            int result = MathFunctionsRecursive.Sum(int.MaxValue-2, int.MaxValue-1);
+            var ex = Record.Exception(testCode);
             // assert
-            Assert.Equal(0, result);
+            Assert.IsType<OverflowException>(ex);
         }
     }
 }
